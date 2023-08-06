@@ -22,6 +22,9 @@ spring:
 #        driver-class-name: org.h2.Driver
 #        url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
 
+
+    spring.mvc.pathmatch.matching-strategy: ANT_PATH_MATCHER
+
     redis:
         host: localhost
         port: 6379
@@ -29,7 +32,14 @@ spring:
     jwt:
         secret: 7YWM7Iqk7Yq4
 
+
+
+
 scheduler:
     scrap:
         yahoo: "0 0 0 * * *"
 # 매일 정각12시에 스케줄러
+
+
+
+

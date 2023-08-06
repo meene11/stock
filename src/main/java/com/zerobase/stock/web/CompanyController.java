@@ -4,6 +4,7 @@ import com.zerobase.stock.model.Company;
 import com.zerobase.stock.model.constants.CacheKey;
 import com.zerobase.stock.persist.entity.CompanyEntity;
 import com.zerobase.stock.service.CompanyService;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
@@ -24,12 +25,14 @@ public class CompanyController {
 
     private final CacheManager redisCacheManager;
 
+    @ApiOperation("회사명 자동완성기능")
     @GetMapping("/autocomplete")
     public ResponseEntity<?> autocomplete(@RequestParam String keyword){
         var result = this.companyService.getCompanyNamesByKeyword(keyword);
         return ResponseEntity.ok(result);
     }
 
+    @ApiOperation("회사정보 리스트 조회")
     @GetMapping
     @PreAuthorize("hasRole('READ')")
     public ResponseEntity<?> searchCompany(final Pageable pageable){
@@ -42,6 +45,7 @@ public class CompanyController {
      * @param request
      * @return
      */
+    @ApiOperation("배당금 조회할 수 있는 회사명 추가")
     @PostMapping
     @PreAuthorize("hasRole('WRITE')")
     public ResponseEntity<?> addCompany(@RequestBody Company request){
@@ -56,6 +60,7 @@ public class CompanyController {
         return ResponseEntity.ok(company);
     }
 
+    @ApiOperation("회사 TICKER로 삭제")
     @DeleteMapping("/{ticker}")
     @PreAuthorize("hasRole('WRITE')")
     public ResponseEntity<?> deleteCompany(@PathVariable String ticker){
