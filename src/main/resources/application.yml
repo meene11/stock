@@ -1,0 +1,35 @@
+spring:
+    application:
+        name: stock
+
+    h2:
+        console:
+            enabled: true
+            path: /h2-console
+
+    jpa:
+        hibernate:
+            ddl-auto: create
+            use-new-id-generator-mappings: false
+        show_sql: true
+        defer-datasource-initialization: true
+
+    datasource:
+        url: jdbc:h2:mem:test
+        username: sa
+        password:
+        driverClassName: org.h2.Driver        
+#        driver-class-name: org.h2.Driver
+#        url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+
+    redis:
+        host: localhost
+        port: 6379
+
+    jwt:
+        secret: 7YWM7Iqk7Yq4
+
+scheduler:
+    scrap:
+        yahoo: "0 0 0 * * *"
+# 매일 정각12시에 스케줄러
